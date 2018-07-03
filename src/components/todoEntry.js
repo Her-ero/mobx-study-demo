@@ -39,4 +39,4 @@ export default class TodoEntry extends React.Component {
 
 TodoEntry.propTypes = {
 	todoStore: PropTypes.object.isRequired
-};
+}

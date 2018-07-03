@@ -1,17 +1,34 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {observer} from 'mobx-react';
-import {pluralize} from '../utils';
-import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from '../constants';
+import React from 'react'
+import PropTypes from 'prop-types'
+import {observer} from 'mobx-react'
+import {pluralize} from '../utils'
+import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS } from '../constants'
 
 @observer
 export default class TodoFooter extends React.Component {
+
+	// 生成过滤
+	renderFilterLink(filterName, url, caption) {
+		return (<li>
+			<a href={"#/" + url}
+				className={filterName ===  this.props.viewStore.todoFilter ? "selected" : ""}>
+				{caption}
+			</a>
+		</li>)
+	}
+
+	// 清除完成
+	clearCompleted = () => {
+		this.props.todoStore.clearCompleted()
+	}
+
 	render() {
 		const todoStore = this.props.todoStore;
-		if (!todoStore.activeTodoCount && !todoStore.completedCount)
-			return null;
+		if (!todoStore.activeTodoCount && !todoStore.completedCount) {
+			return null
+		}
 
-		const activeTodoWord = pluralize(todoStore.activeTodoCount, 'item');
+		const activeTodoWord = pluralize(todoStore.activeTodoCount, 'item')
 
 		return (
 			<footer className="footer">
@@ -32,25 +49,11 @@ export default class TodoFooter extends React.Component {
 						</button>
 				}
 			</footer>
-		);
+		)
 	}
-
-	renderFilterLink(filterName, url, caption) {
-		return (<li>
-			<a href={"#/" + url}
-				className={filterName ===  this.props.viewStore.todoFilter ? "selected" : ""}>
-				{caption}
-			</a>
-			{' '}
-		</li>)
-	}
-
-	clearCompleted = () => {
-		this.props.todoStore.clearCompleted();
-	};
 }
 
 TodoFooter.propTypes = {
 	viewStore: PropTypes.object.isRequired,
-	todoStore: PropTypes.object.isRequired
+	todoStore: PropTypes.object.isRequired,
 }

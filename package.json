@@ -42,7 +42,6 @@
     "react-hot-loader": "^2.0.0-alpha-4",
     "style-loader": "^0.18.2",
     "ts-loader": "^2.2.1",
-    "typescript": "^2.4.1",
     "webpack": "^3.0.0",
     "webpack-dev-middleware": "^1.11.0",
     "webpack-dev-server": "^2.5.0"
