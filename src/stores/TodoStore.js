@@ -57,7 +57,9 @@ export default class TodoStore {
 
 	static fromJS(array) {
 		const todoStore = new TodoStore();
-		todoStore.todos = array.map(item => TodoModel.fromJS(todoStore, item));
-		return todoStore;
+		todoStore.todos = array.map(item => {
+			return TodoModel.fromJS(todoStore, item)
+		})
+		return todoStore
 	}
 }
